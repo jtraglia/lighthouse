@@ -43,7 +43,7 @@ impl<E: EthSpec> Case for KZGVerifyKZGProof<E> {
 
         let kzg = get_kzg::<E::Kzg>()?;
         let result = parse_input(&self.input).and_then(|(commitment, z, y, proof)| {
-            verify_kzg_proof::<E>(&kzg, commitment, proof, z, y)
+            verify_kzg_proof::<E>(&kzg, &commitment, &proof, &z, &y)
                 .map_err(|e| Error::InternalError(format!("Failed to validate proof: {:?}", e)))
         });
 
